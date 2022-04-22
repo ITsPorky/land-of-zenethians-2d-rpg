@@ -78,12 +78,13 @@ class Overworld {
     this.startGameLoop();
 
     // this.map.startCutscene([
-    //   { who: "hero", type: "walk", direction: "down" },
-    //   { who: "hero", type: "walk", direction: "down" },
-    //   { who: "npc2", type: "walk", direction: "right" },
-    //   { who: "npc2", type: "walk", direction: "right" },
-    //   { who: "npc1", type: "stand", direction: "up", time: 100 },
-    //   { type: "textMessage", text: "Sup you lil pussy bitch" },
+    //   { type: "battle" },
+    //   // { who: "hero", type: "walk", direction: "down" },
+    //   // { who: "hero", type: "walk", direction: "down" },
+    //   // { who: "npc2", type: "walk", direction: "right" },
+    //   // { who: "npc2", type: "walk", direction: "right" },
+    //   // { who: "npc1", type: "stand", direction: "up", time: 100 },
+    //   // { type: "textMessage", text: "Sup you lil pussy bitch" },
     // ]);
   }
 }

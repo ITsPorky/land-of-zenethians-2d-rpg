@@ -11,10 +11,6 @@ class Entity extends GameObject {
       left: ["x", -1],
       right: ["x", 1],
     };
-
-    this.seed = config.seed || "123";
-    this.data = utils.fetchData(config.seed) || utils.fetchData("123");
-    this.src = config.src || "/images/characters/player.png";
   }
 
   update(state) {
@@ -89,22 +85,5 @@ class Entity extends GameObject {
       return;
     }
     this.sprite.setAnimation("idle-" + this.direction);
-  }
-
-  // Other methods for fetching API data
-  async fetchData(seed) {
-    const response = await fetch(
-      `https://character-generation-api.herokuapp.com/seed/${seed}/metadata`
-    );
-    const entityData = await response.json();
-    return entityData;
-  }
-
-  getEntityData() {
-    return this.entityData;
-  }
-
-  getSprite() {
-    return this.entityData.sprite_url;
   }
 }

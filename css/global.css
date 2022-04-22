@@ -24,7 +24,7 @@ body {
   width: 352px;
   height: 198px;
   margin: auto;
-  transform: scale(2) translateY(50%);
+  transform: scale(3) translateY(50%);
   outline: 1px solid #fff;
 }
 

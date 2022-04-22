@@ -5,14 +5,30 @@ class GameObject {
     this.x = config.x || 0;
     this.y = config.y || 0;
     this.direction = config.direction || "down";
+    // Get json data from seed
+    this.seed = config.seed || "0";
+    // Create empty data object
+    this.data = {};
+    // When data is fetched callback and add data to this.data
+    this.fetchData(this.seed, (jsonData) => {
+      this.data = jsonData;
+      // Create new sprite from API data
+      this.sprite = new Sprite({
+        gameObject: this,
+        src: utils.getSprite(this.data) || "/images/characters/player.png",
+      });
+    });
+
+    // Create default sprite
     this.sprite = new Sprite({
       gameObject: this,
-      src: config.src || "/images/characters/player.png",
+      src: utils.getSprite(this.data) || "/images/characters/player.png",
     });
+
     this.behaviourLoop = config.behaviourLoop || [];
     this.behaviourLoopIndex = 0;
-
     this.talking = config.talking || [];
+    console.log("constructor complete", this);
   }
 
   mount(map) {
@@ -54,5 +70,17 @@ class GameObject {
 
     // Do it again!
     this.doBehaviourEvent(map);
+  }
+
+  // Method for fetching API data
+  async fetchData(seed, callback) {
+    try {
+      const api_url = `https://character-generation-api.herokuapp.com/seed/${seed}/metadata`;
+      const response = await fetch(api_url);
+      const data = await response.json();
+      callback(data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

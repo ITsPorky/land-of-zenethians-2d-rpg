@@ -32,6 +32,13 @@ const utils = {
         return "up";
     }
   },
+  wait(ms) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, ms);
+    });
+  },
   emitEvent(name, detail) {
     const event = new CustomEvent(name, { detail });
     document.dispatchEvent(event);
@@ -39,10 +46,17 @@ const utils = {
 
   // Other methods for fetching API data
   async fetchData(seed) {
-    const response = await fetch(
-      `https://character-generation-api.herokuapp.com/seed/${seed}/metadata`
-    );
-    const entityData = await response.json();
-    return entityData;
+    try {
+      const api_url = `https://character-generation-api.herokuapp.com/seed/${seed}/metadata`;
+      const response = await fetch(api_url);
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getSprite(data) {
+    return data.sprite_url;
   },
 };

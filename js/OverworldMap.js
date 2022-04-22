@@ -103,13 +103,13 @@ window.OverworldMaps = {
     upperSrc: "",
     gameObjects: {
       hero: new Entity({
+        seed: "836",
         isPlayerControlled: true,
         x: utils.withGrid(10),
         y: utils.withGrid(5),
-        src: utils.fetchData("123"),
-        data: utils.fetchData("123"),
       }),
       npc1: new Entity({
+        seed: Math.floor(Math.random() * 1000),
         x: utils.withGrid(5),
         y: utils.withGrid(6),
         behaviourLoop: [
@@ -138,6 +138,7 @@ window.OverworldMaps = {
         ],
       }),
       npc2: new Entity({
+        seed: Math.floor(Math.random() * 1000),
         x: utils.withGrid(8),
         y: utils.withGrid(8),
         behaviourLoop: [
@@ -150,6 +151,36 @@ window.OverworldMaps = {
           { type: "walk", direction: "left" },
           { type: "stand", direction: "down", time: 800 },
         ],
+      }),
+      np3: new Entity({
+        seed: Math.floor(Math.random() * 1000),
+        isPlayerControlled: false,
+        x: utils.withGrid(11),
+        y: utils.withGrid(8),
+      }),
+      np4: new Entity({
+        seed: Math.floor(Math.random() * 1000),
+        isPlayerControlled: false,
+        x: utils.withGrid(12),
+        y: utils.withGrid(8),
+      }),
+      np5: new Entity({
+        seed: Math.floor(Math.random() * 1000),
+        isPlayerControlled: false,
+        x: utils.withGrid(13),
+        y: utils.withGrid(8),
+      }),
+      np5: new Entity({
+        seed: Math.floor(Math.random() * 1000),
+        isPlayerControlled: false,
+        x: utils.withGrid(14),
+        y: utils.withGrid(8),
+      }),
+      np6: new Entity({
+        seed: Math.floor(Math.random() * 1000),
+        isPlayerControlled: false,
+        x: utils.withGrid(15),
+        y: utils.withGrid(8),
       }),
     },
     walls: {
@@ -210,5 +241,12 @@ window.OverworldMaps = {
         ],
       }),
     },
+  },
+  cutsceneSpaces: {
+    [utils.asGridCoord(1, 0)]: [
+      {
+        events: [{ type: "changeMap", map: "DemoRoom" }],
+      },
+    ],
   },
 };
