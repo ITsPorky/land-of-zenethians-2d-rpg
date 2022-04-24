@@ -184,7 +184,6 @@ window.OverworldMaps = {
       }),
     },
     walls: {
-      [utils.asGridCoord(0, 0)]: true,
       [utils.asGridCoord(0, 1)]: true,
       [utils.asGridCoord(0, 2)]: true,
     },
@@ -200,7 +199,7 @@ window.OverworldMaps = {
           ],
         },
       ],
-      [utils.asGridCoord(1, 0)]: [
+      [utils.asGridCoord(0, 0)]: [
         {
           events: [{ type: "changeMap", map: "map2" }],
         },
@@ -212,6 +211,7 @@ window.OverworldMaps = {
     upperSrc: "",
     gameObjects: {
       hero: new Entity({
+        seed: "836",
         isPlayerControlled: true,
         x: utils.withGrid(10),
         y: utils.withGrid(5),
@@ -222,7 +222,6 @@ window.OverworldMaps = {
         behaviourLoop: [
           { type: "walk", direction: "left" },
           { type: "walk", direction: "left" },
-          { type: "stand", direction: "up", time: 800 },
           { type: "walk", direction: "right" },
           { type: "walk", direction: "right" },
         ],
@@ -241,12 +240,12 @@ window.OverworldMaps = {
         ],
       }),
     },
-  },
-  cutsceneSpaces: {
-    [utils.asGridCoord(1, 0)]: [
-      {
-        events: [{ type: "changeMap", map: "DemoRoom" }],
-      },
-    ],
+    cutsceneSpaces: {
+      [utils.asGridCoord(0, 0)]: [
+        {
+          events: [{ type: "changeMap", map: "DemoRoom" }],
+        },
+      ],
+    },
   },
 };
