@@ -8,7 +8,13 @@
   --menu-selected-background: ;
 }
 
+@font-face {
+  font-family: "PressStart2P";
+  src: url(/assets/fonts/Press_Start_2P/PressStart2P-Regular.ttf);
+}
+
 * {
+  font-family: "PressStart2P";
   box-sizing: border-box;
 }
 
@@ -24,10 +30,31 @@ body {
   width: 352px;
   height: 198px;
   margin: auto;
-  transform: scale(3) translateY(50%);
+  transform: scale(2) translateY(50%);
   outline: 1px solid #fff;
 }
 
 .game-container canvas {
   image-rendering: pixelated;
+}
+
+.loading-screen {
+  position: absolute;
+  top: 0;
+  left: 0; 
+  right: 0;
+  bottom: 0;
+  background: #1785ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.loading-screen-message {
+  font-size: 8px;
+  color: #000;
+  -webkit-text-fill-color: #000; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fff;
 }

@@ -13,7 +13,7 @@
 
 .TextMessage_p {
   margin: 0;
-  font-size: 12px;
+  font-size: 5px;
 }
 
 .TextMessage span {
@@ -26,7 +26,7 @@
 
 .TextMessage_button {
   margin: 0;
-  font-size: 8px;
+  font-size: 4px;
   padding: 0;
   -webkit-appearance: none;
   background: none;
