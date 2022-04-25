@@ -31,7 +31,7 @@ class Combatant {
       <div class="combatant-character-crop">
         <img class="combatant-character" src="${this.src}" alt="${this.name}" />
       </div>
-      <p class="combatant-type">${this.type}</p>
+      <p class="combatant-type">${this.class}</p>
       <svg viewBox="0 0 26 3" class="combatant-life-container">
         <rect x=0 y=0 width="0%" height=1 fill="#82ff71" />
         <rect x=0 y=0 width="0%" height=2 fill="#3ef126" />
