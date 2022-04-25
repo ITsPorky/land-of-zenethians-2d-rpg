@@ -34,7 +34,7 @@ window.Actions = {
 
   burnStatus: {
     name: "Burning Blaze",
-    stargetType: "friendly",
+    targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}" },
       { type: "stateChange", status: { type: "burned", duration: 3 } },

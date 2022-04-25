@@ -24,7 +24,7 @@ class KeyboardMenu {
       })
       .join("");
 
-    this.element.querySelector("button").forEach((button) => {
+    this.element.querySelectorAll("button").forEach((button) => {
       button.addEventListener("click", () => {
         const chosenOption = this.options[Number(button.dataset.button)];
         chosenOption.handler();
@@ -38,6 +38,10 @@ class KeyboardMenu {
         this.descriptionElementText.innerHTML = button.dataset.description;
       });
     });
+
+    setTimeout(() => {
+      this.element.querySelector("button[data-button]:not([disabled])").focus();
+    }, 10);
   }
 
   createElement() {
@@ -51,9 +55,41 @@ class KeyboardMenu {
     this.descriptionElementText = this.descriptionElement.querySelector("p");
   }
 
+  end() {
+    // Remove menu element and description element
+    this.element.remove();
+    this.descriptionElement.remove();
+
+    // Clean up bindings
+    this.up.unbind();
+    this.down.unbind();
+  }
+
   init(container) {
     this.createElement();
     container.appendChild(this.descriptionElement);
     container.appendChild(this.element);
+
+    this.up = new KeyPressListener("ArrowUp", () => {
+      const current = new Number(this.prevFocus.getAttribute("data-button"));
+      const prevButton = Array.from(
+        this.element.querySelectorAll("button[data-button]")
+      )
+        .reverse()
+        .find((el) => {
+          return el.dataset.button < current && !el.disabled;
+        });
+      prevButton?.focus();
+    });
+
+    this.down = new KeyPressListener("ArrowDown", () => {
+      const current = new Number(this.prevFocus.getAttribute("data-button"));
+      const nextButton = Array.from(
+        this.element.querySelectorAll("button[data-button]")
+      ).find((el) => {
+        return el.dataset.button > current && !el.disabled;
+      });
+      nextButton?.focus();
+    });
   }
 }
