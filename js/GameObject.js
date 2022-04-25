@@ -8,21 +8,25 @@ class GameObject {
     // Get json data from seed
     this.seed = config.seed || "0";
     // Create empty data object
-    this.data = {};
+    this.attributes = {};
     // When data is fetched callback and add data to this.data
     this.fetchData(this.seed, (jsonData) => {
-      this.data = jsonData;
+      this.attributes = jsonData;
       // Create new sprite from API data
       this.sprite = new Sprite({
         gameObject: this,
-        src: utils.getSprite(this.data) || "/images/characters/player.png",
+        src:
+          utils.getSprite(this.attributes) ||
+          "/assets/images/characters/player.png",
       });
     });
 
     // Create default sprite
     this.sprite = new Sprite({
       gameObject: this,
-      src: utils.getSprite(this.data) || "/images/characters/player.png",
+      src:
+        utils.getSprite(this.attributes) ||
+        "/assets/images/characters/player.png",
     });
 
     this.behaviourLoop = config.behaviourLoop || [];

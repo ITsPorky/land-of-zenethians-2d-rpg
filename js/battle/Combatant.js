@@ -12,7 +12,7 @@ class Combatant {
     return percent > 0 ? percent : 0;
   }
 
-  get hpPercent() {
+  get xpPercent() {
     return (this.xp / this.maxXp) * 100;
   }
 
@@ -56,8 +56,61 @@ class Combatant {
     Object.keys(changes).forEach((key) => {
       this[key] = changes[key];
     });
+
+    // Update HP & XP percent fills
     this.hpFills.forEach((rect) => (rect.style.width = `${this.hpPercent}%`));
+    this.xpFills.forEach((rect) => (rect.style.width = `${this.xpPercent}%`));
+
+    // Update level on screen
     this.hudElement.querySelector(".combatant-level").innerHTML = this.level;
+
+    // Update status
+    const statusElement = this.hudElement.querySelector(".combatant-status");
+    if (this.status) {
+      statusElement.innerText = this.status.type;
+      statusElement.style.display = "block";
+    } else {
+      statusElement.innerText = "";
+      statusElement.style.display = "none";
+    }
+  }
+
+  getReplacedEvents(originalEvents) {
+    if (
+      this.status?.type === "slippery" &&
+      utils.randomFromArray([true, false, false])
+    ) {
+      return [{ type: "textMessage", text: `${this.name} flops over!` }];
+    }
+
+    return originalEvents;
+  }
+
+  getPostEvents() {
+    if (this.status.type === "burned") {
+      return [
+        { type: "textMessage", text: "I am burned!" },
+        { type: "stateChange", recover: 5, onCaster: true },
+      ];
+    }
+
+    return [];
+  }
+
+  decrementStatus() {
+    if (this.status?.duration > 0) {
+      this.status.duration -= 1;
+      if (this.status.duration === 0) {
+        this.update({
+          status: null,
+        });
+        return {
+          type: "textMessage",
+          text: `The ${this.status.type} status expired on {PLAYER NAME}!`,
+        };
+      }
+    }
+    return null;
   }
 
   init(container) {

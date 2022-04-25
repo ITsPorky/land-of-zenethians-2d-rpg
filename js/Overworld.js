@@ -4,6 +4,8 @@ class Overworld {
     this.canvas = this.element.querySelector(".game-canvas");
     this.ctx = this.canvas.getContext("2d");
     this.map = null;
+
+    this.isContentLoaded = false;
   }
 
   startGameLoop() {
@@ -28,7 +30,7 @@ class Overworld {
       // Draw Game Objects
       Object.values(this.map.gameObjects)
         .sort((a, b) => {
-          return a.y - b.y;
+          return a.y - b.y - (a.x - b.x); // Sort images for left to right and up to down
         })
         .forEach((object) => {
           object.sprite.draw(this.ctx, cameraObject);
@@ -66,7 +68,20 @@ class Overworld {
     this.map.mountObjects();
   }
 
+  drawLoadingScreen() {
+    const loadingScreen = document.createElement("div");
+    loadingScreen.classList.add("loading-screen");
+    loadingScreen.innerHTML = `
+      <p class='loading-screen-message'>Loading...</p>
+    `;
+    this.element.appendChild(loadingScreen);
+  }
+
   init() {
+    // Add loading screen to wait until the characters
+    // and all entities have been loaded.
+    // this.drawLoadingScreen();
+
     this.startMap(window.OverworldMaps.DemoRoom);
 
     this.bindActionInput();
@@ -77,15 +92,23 @@ class Overworld {
 
     this.startGameLoop();
 
-    // this.map.startCutscene([
-    //   // { type: "changeMap", map: "DemoRoom" },
-    //   // { type: "battle" },
-    //   // { who: "hero", type: "walk", direction: "down" },
-    //   // { who: "hero", type: "walk", direction: "down" },
-    //   // { who: "npc2", type: "walk", direction: "right" },
-    //   // { who: "npc2", type: "walk", direction: "right" },
-    //   // { who: "npc1", type: "stand", direction: "up", time: 100 },
-    //   // { type: "textMessage", text: "Sup you lil pussy bitch" },
-    // ]);
+    this.map.startCutscene([
+      { type: "battle" },
+      // { who: "hero", type: "walk", direction: "down" },
+      // { who: "npc1", type: "stand", direction: "up", time: 100 },
+      // { type: "textMessage", text: "Welcome to the Land of Zenethians..." },
+      // {
+      //   type: "textMessage",
+      //   text: "Here you will face many challenges. The world of Zenethia is an unforgiving place, filled with lots of mystery...",
+      // },
+      // {
+      //   type: "textMessage",
+      //   text: "During your travels you will meet many people and embark on many quests...",
+      // },
+      // {
+      //   type: "textMessage",
+      //   text: "Good luck traveller. May Zenethia treat you well...",
+      // },
+    ]);
   }
 }

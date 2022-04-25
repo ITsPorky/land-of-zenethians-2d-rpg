@@ -99,7 +99,7 @@ class OverworldMap {
 
 window.OverworldMaps = {
   DemoRoom: {
-    lowerSrc: "/images/maps/blank_map.png",
+    lowerSrc: "/assets/images/maps/blank_map.png",
     upperSrc: "",
     gameObjects: {
       hero: new Entity({
@@ -191,8 +191,6 @@ window.OverworldMaps = {
       [utils.asGridCoord(7, 4)]: [
         {
           events: [
-            { who: "npc2", type: "walk", direction: "down" },
-            { who: "npc2", type: "walk", direction: "down" },
             { who: "hero", type: "walk", direction: "down" },
             { who: "hero", type: "walk", direction: "left" },
             { type: "textMessage", text: "You can't be in there!" },
@@ -207,7 +205,7 @@ window.OverworldMaps = {
     },
   },
   map2: {
-    lowerSrc: "/images/maps/blank_map.png",
+    lowerSrc: "/assets/images/maps/blank_map.png",
     upperSrc: "",
     gameObjects: {
       hero: new Entity({

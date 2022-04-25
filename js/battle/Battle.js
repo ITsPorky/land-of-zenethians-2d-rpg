@@ -3,6 +3,7 @@ class Battle {
     (this.combatants = {
       player1: new Combatant(
         {
+          ...Players.player1,
           team: "player",
           hp: 10,
           maxHp: 20,
@@ -10,11 +11,13 @@ class Battle {
           maxXp: 50,
           level: 1,
           status: null,
+          isPlayerControlled: true,
         },
         this
       ),
       enemy1: new Combatant(
         {
+          ...Players.player1,
           team: "enemy",
           hp: 10,
           maxHp: 20,
@@ -37,10 +40,10 @@ class Battle {
     this.element.classList.add("battle");
     this.element.innerHTML = `
       <div class="battle-hero">
-        <img src="${"/images/characters/player.png"}" alt="hero" />
+        <img src="${"/assets/images/characters/player.png"}" alt="hero" />
       </div>
       <div class="battle-enemy">
-        <img src="${"/images/characters/player.png"}" alt="enemy" />
+        <img src="${"/assets/images/characters/player.png"}" alt="enemy" />
       </div>
     `;
   }
