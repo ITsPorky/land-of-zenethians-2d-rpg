@@ -16,4 +16,7 @@ A 2d top down RPG made with JavaScript
 * Random overworld that has dungeon entrances to random generated dungeons.
 * Add a Journal that will store the players previous characters, and their journeys. Listing the character back stories and significant events that happened along the way, such as: Dungeons enterd, foes killed, total steps taken, lands visited, npcs met etc.
 * Add multiplayer support.
-* 
+* Add randomised Regions, Towns, Cities, Biomes.
+* Add Temperature, Compass, Date?, Month?, Year?, Time?
+* Add Minimap with icons on Important locations.
+* Add Quest markers.
