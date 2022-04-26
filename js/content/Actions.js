@@ -31,7 +31,7 @@ window.Actions = {
       { type: "stateChange", damage: 10 },
     ],
   },
-
+  // Other Styled actions
   burnStatus: {
     name: "Burning Blaze",
     targetType: "friendly",
