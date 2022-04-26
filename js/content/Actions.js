@@ -1,6 +1,7 @@
 window.Actions = {
   Bow: {
     name: "Bow Attack",
+    description: "Fire an arrow at your oppenent",
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}" },
       { type: "animation", animation: "spin" },
@@ -9,6 +10,7 @@ window.Actions = {
   },
   Staff: {
     name: "Staff Attack",
+    description: "Casts deadly magic at opponent",
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}" },
       { type: "animation", animation: "spin" },
@@ -17,6 +19,7 @@ window.Actions = {
   },
   Sword: {
     name: "Sword Attack",
+    description: "Slash or stab the opponent with a sword",
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}" },
       { type: "animation", animation: "spin" },
@@ -25,15 +28,16 @@ window.Actions = {
   },
   Dagger: {
     name: "Dagger Attack",
+    description: "Slash or stab the opponent with a dagger",
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}" },
       { type: "animation", animation: "spin" },
       { type: "stateChange", damage: 10 },
     ],
   },
-  // Other Styled actions
-  burnStatus: {
-    name: "Burning Blaze",
+  // Status actions
+  burning: {
+    name: "Burning",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}" },
@@ -49,6 +53,34 @@ window.Actions = {
       {
         type: "textMessage",
         text: "{CASTER} is struggling to stay on their feet!",
+      },
+    ],
+  },
+
+  // Items
+  item_cureStatusPotion: {
+    name: "Cure Status Potion",
+    description: "Heals the user of all status effects",
+    targetType: "friendly",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses a {ACTION}" },
+      { type: "stateChange", status: null },
+      {
+        type: "textMessage",
+        text: "Status effects have been cleared from {TARGET}!",
+      },
+    ],
+  },
+  item_hpPotion: {
+    name: "Healing Potion",
+    description: "Heals the users HP",
+    targetType: "friendly",
+    success: [
+      { type: "textMessage", text: "{CASTER} uses a {ACTION}" },
+      { type: "stateChange", recover: 10 },
+      {
+        type: "textMessage",
+        text: "{TARGET}'s HP has been restored!",
       },
     ],
   },
