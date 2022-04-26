@@ -1,6 +1,7 @@
 class GameObject {
   constructor(config) {
     this.id = null;
+    this.isLoaded = false;
     this.isMounted = false;
     this.x = config.x || 0;
     this.y = config.y || 0;
@@ -12,6 +13,7 @@ class GameObject {
     // When data is fetched callback and add data to this.data
     this.fetchData(this.seed, (jsonData) => {
       this.attributes = jsonData;
+      this.isLoaded = true;
       // Create new sprite from API data
       this.sprite = new Sprite({
         gameObject: this,
@@ -32,7 +34,7 @@ class GameObject {
     this.behaviourLoop = config.behaviourLoop || [];
     this.behaviourLoopIndex = 0;
     this.talking = config.talking || [];
-    console.log("constructor complete", this);
+    // console.log("constructor complete", this);
   }
 
   mount(map) {
