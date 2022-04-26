@@ -1,11 +1,11 @@
 :root {
-  --border-color: #000000;
-  --dialogue-background: #ffffff;
+  --border-color: #222;
+  --dialogue-background: #fff;
 
-  --menu-background: #222222;
-  --menu-border-color: #ffffff;
-  --menu-font-color: #ffffff;
-  --menu-selected-background: #666;
+  --menu-background: #fff;
+  --menu-border-color: #222;
+  --menu-font-color: #222;
+  --menu-selected-background: #b3e3fe;
 }
 
 @font-face {
@@ -30,7 +30,7 @@ body {
   width: 352px;
   height: 198px;
   margin: auto;
-  transform: scale(2) translateY(50%);
+  transform: scale(3) translateY(50%);
   outline: 1px solid #fff;
 }
 

@@ -1,7 +1,9 @@
 .combatant {
   width: 67px;
   height: 14px;
-  background: #444;
+  background: var(--menu-background);
+  border: 1px solid var(--menu-border-color);
+  padding: 1px;
   position: absolute;
 }
 
@@ -19,11 +21,11 @@
 
 .combatant[data-team="player"] {
   left: 46px;
-  top: 40px;
+  top: 30px;
 }
 
 .combatant[data-team="enemy"] {
-  top: 40px;
+  top: 30px;
   right: 46px;
 }
 
@@ -52,7 +54,7 @@
   top: -8px;
   white-space: nowrap;
   background: var(--menu-background);
-  color: #fff;
+  color: #222;
   font-size: 3px;
   padding: 0 2px;
   margin: 0;
@@ -60,11 +62,19 @@
 
 .combatant-type {
   position: absolute;
-  font-size: 3px;
-  left: 3px;
-  top: -2px;
-  width: 16px;
-  height: 16px;
+  font-size: 2px;
+  left: 1px;
+  top: -1px;
+  /* width: 16px;
+  height: 16px; */
+}
+
+.combatant-life-value {
+  font-size: 2px;
+  margin: 0;
+  position: absolute;
+  left: 1px;
+  top: 4px;
 }
 
 .combatant-life-container {
@@ -79,6 +89,14 @@
   transition: width 0.2s;
 }
 
+.combatant-xp-value {
+  font-size: 2px;
+  margin: 0;
+  position: absolute;
+  left: 1px;
+  top: 8px;
+}
+
 .combatant-xp-container {
   position: absolute;
   left: 20px;
@@ -90,15 +108,16 @@
 .combatant-level {
   position: absolute;
   font-size: 4px;
-  right: 2px;
-  top: -1px;
+  right: 0px;
+  top: -2px;
   width: 17px;
   height: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f8c594;
-  border: 1px solid #a48465;
+  color: #fff;
+  background: #222;
+  border: 1px solid #666;
   margin: 0;
 }
 
@@ -115,4 +134,26 @@
 
 .combatant-status[data-status="slow"] {
   color: #222;
+}
+
+.character {
+  position: absolute;
+  transform: scale(2);
+  background: url(/assets//images/characters/shadow.png);
+}
+
+.character[data-team="player"] {
+  bottom: 60px;
+  left: 50px;
+}
+.character[data-team="enemy"] {
+  bottom: 60px;
+  right: 50px;
+  transform: scaleX(-1) scale(2);
+}
+.character[data-active="false"] {
+  opacity:0;
+}
+.character[data-active="true"] {
+  opacity:1;
 }
