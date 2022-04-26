@@ -4,10 +4,10 @@ class Battle {
       player1: new Combatant(
         {
           ...Players.player1,
+          actions: [Players.player1.weapon.type],
           team: "player",
-          hp: 10,
-          maxHp: 20,
-          xp: 0,
+          maxHp: Players.player1.hp,
+          xp: 20,
           maxXp: 50,
           level: 1,
           status: null,
@@ -18,10 +18,10 @@ class Battle {
       enemy1: new Combatant(
         {
           ...Players.player1,
+          actions: [Players.player1.weapon.type],
           team: "enemy",
-          hp: 10,
-          maxHp: 20,
-          xp: 0,
+          maxHp: Players.player1.hp,
+          xp: 20,
           maxXp: 50,
           level: 1,
           status: null,
@@ -38,14 +38,14 @@ class Battle {
   createElement() {
     this.element = document.createElement("div");
     this.element.classList.add("battle");
-    this.element.innerHTML = `
-      <div class="battle-hero">
-        <img src="${"/assets/images/characters/player.png"}" alt="hero" />
-      </div>
-      <div class="battle-enemy">
-        <img src="${"/assets/images/characters/player.png"}" alt="enemy" />
-      </div>
-    `;
+    // this.element.innerHTML = `
+    //   <div class="battle-hero">
+    //     <img src="${this.combatants.player1.sprite_url}" alt="hero" />
+    //   </div>
+    //   <div class="battle-enemy">
+    //     <img src="${this.combatants.enemy1.sprite_url}" alt="enemy" />
+    //   </div>
+    // `;
   }
 
   init(container) {

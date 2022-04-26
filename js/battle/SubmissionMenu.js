@@ -43,24 +43,24 @@ class SubmissionMenu {
         },
       ],
       attacks: [
-        // ...this.caster.actions.map((key) => {
-        //   const action = Actions[key];
-        //   return {
-        //     label: action.name,
-        //     description: action.description,
-        //     handler: () => {
-        //       this.menuSubmit(action);
-        //     },
-        //   };
-        // }),
-        {
-          label: "Attack",
-          description: "Attack is made.",
-          handler: () => {
-            // Swap to another party member...
-            console.log("ATTACK OTHER PLAYER");
-          },
-        },
+        ...this.caster.actions.map((key) => {
+          const action = Actions[key];
+          return {
+            label: action.name,
+            description: action.description,
+            handler: () => {
+              this.menuSubmit(action);
+            },
+          };
+        }),
+        // {
+        //   label: "Attack",
+        //   description: "Attack is made.",
+        //   handler: () => {
+        //     // Swap to another party member...
+        //     console.log("ATTACK OTHER PLAYER");
+        //   },
+        // },
         backOption,
       ],
       items: [backOption],

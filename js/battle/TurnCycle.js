@@ -48,20 +48,24 @@ class TurnCycle {
       await this.onNewEvent(event);
     }
 
-    // Chexk for a status expire
+    // Check for a status expire
     const expiredEvent = caster.decrementStatus();
     if (expiredEvent) {
       await this.onNewEvent(expiredEvent);
     }
 
+    // Swap active team for next turn
     this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
+
+    // Recursivly call to play the next turn
+    this.turn();
   }
 
   async init() {
-    // await this.onNewEvent({
-    //   type: "textMessage",
-    //   text: "The battle is starting",
-    // });
+    await this.onNewEvent({
+      type: "textMessage",
+      text: "The battle is starting",
+    });
 
     // Start the first turn
     this.turn();

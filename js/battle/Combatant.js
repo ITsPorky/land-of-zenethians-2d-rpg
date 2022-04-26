@@ -29,19 +29,27 @@ class Combatant {
       <p class="combatant-name">${this.name}</p>
       <p class="combatant-level"></p>
       <div class="combatant-character-crop">
-        <img class="combatant-character" src="${this.src}" alt="${this.name}" />
+        <img class="combatant-character" src="${this.sprite_url}" alt="${this.name}" />
       </div>
       <p class="combatant-type">${this.class}</p>
+      <p class="combatant-life-value">HP:${this.hp}/${this.maxHp}</p>
       <svg viewBox="0 0 26 3" class="combatant-life-container">
         <rect x=0 y=0 width="0%" height=1 fill="#82ff71" />
         <rect x=0 y=0 width="0%" height=2 fill="#3ef126" />
       </svg>
+      <p class="combatant-xp-value">XP:${this.xp}/${this.maxXp}</p>
       <svg viewBox="0 0 26 2" class="combatant-xp-container">
         <rect x=0 y=0 width="0%" height=1 fill="#ffd76a" />
-        <rect x=0 y=0 width="0%" height=2 fill="#ffc934" />
+        <rect x=0 y=0 width="0%" height=2 fill="#329cff" />
       </svg>
       <p class="combatant-status"></p>
     `;
+
+    this.characterElement = document.createElement("img");
+    this.characterElement.classList.add("character");
+    this.characterElement.setAttribute("src", this.sprite_url);
+    this.characterElement.setAttribute("alt", this.name);
+    this.characterElement.setAttribute("data-team", this.team);
 
     this.hpFills = this.hudElement.querySelectorAll(
       ".combatant-life-container > rect"
@@ -63,6 +71,7 @@ class Combatant {
 
     // Update level on screen
     this.hudElement.querySelector(".combatant-level").innerHTML = this.level;
+    this.characterElement.setAttribute("data-active", this.isActive);
 
     // Update status
     const statusElement = this.hudElement.querySelector(".combatant-status");
@@ -87,7 +96,7 @@ class Combatant {
   }
 
   getPostEvents() {
-    if (this.status.type === "burned") {
+    if (this.status?.type === "burned") {
       return [
         { type: "textMessage", text: "I am burned!" },
         { type: "stateChange", recover: 5, onCaster: true },
@@ -116,6 +125,7 @@ class Combatant {
   init(container) {
     this.createElement();
     container.appendChild(this.hudElement);
+    container.appendChild(this.characterElement);
     this.update();
   }
 }

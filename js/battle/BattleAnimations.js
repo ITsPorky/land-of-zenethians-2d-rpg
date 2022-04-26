@@ -1,8 +1,9 @@
 window.BattleAnimations = {
   async spin(event, onComplete) {
-    const element = event.caster;
+    const element = event.caster.characterElement;
     const animationClassName =
       event.caster.team === "player" ? "enemy" : "player";
+
     element.classList.add(animationClassName);
 
     // Remove class when animation is fully complete

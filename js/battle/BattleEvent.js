@@ -4,8 +4,7 @@ class BattleEvent {
     this.battle = battle;
   }
 
-  textMessage() {
-    console.log(this.event.text);
+  textMessage(resolve) {
     const text = this.event.text
       .replace("{CASTER}", this.event.caster?.name)
       .replace("{TARGET}", this.event.target?.name)
@@ -17,11 +16,12 @@ class BattleEvent {
         resolve();
       },
     });
-    message.init(this.battleElement);
+    message.init(this.battle.element);
   }
 
   async stateChange(resolve) {
     const { caster, target, damage, recover, status, action } = this.event;
+
     let who = this.event.onCaster ? caster : target;
 
     if (damage) {
@@ -30,9 +30,13 @@ class BattleEvent {
         hp: target.hp - damage,
       });
 
+      // Update displayed HP text
+      target.hudElement.querySelector(
+        ".combatant-life-value"
+      ).innerText = `HP:${target.hp}/${target.maxHp}`;
+
       // start blinking
-      // target.pizzaElement.classList.add("battle-damage-blink");
-      target.classList.add("battle-damage-blink");
+      target.characterElement.classList.add("battle-damage-blink");
     }
 
     if (recover) {
@@ -61,7 +65,7 @@ class BattleEvent {
     await utils.wait(600);
 
     // stop blinking
-    target.classList.remove("battle-damage-blink");
+    target.characterElement.classList.remove("battle-damage-blink");
 
     resolve();
   }
