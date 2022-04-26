@@ -15,8 +15,8 @@
   height: 20px;
   cursor: pointer;
   font-family: inherit;
-  padding: 0;
   font-size: 4px;
+  padding: 0 3px;
 }
 
 .keyboard-menu button:focus {
@@ -33,6 +33,10 @@
   right: 0;
   top: 0;
   bottom: 0;
+  font-size: 4px;
+  display: flex;
+  align-items: center;
+  padding-right: 3px;
 }
 
 .description-box {
