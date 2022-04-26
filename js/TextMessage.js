@@ -21,7 +21,7 @@ class TextMessage {
       text: this.text,
     });
 
-    this.element.querySelector("button").addEventListener("keydown", () => {
+    this.element.querySelector("button").addEventListener("click", () => {
       // Close text message
       this.done();
     });
