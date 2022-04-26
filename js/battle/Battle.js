@@ -10,7 +10,7 @@ class Battle {
           xp: 20,
           maxXp: 50,
           level: 1,
-          status: null,
+          status: { type: "burning" },
           isPlayerControlled: true,
         },
         this
@@ -33,6 +33,12 @@ class Battle {
         player: "player1",
         enemy: "enemy1",
       });
+    this.items = [
+      { actionId: "item_cureStatusPotion", instanceId: "p1", team: "player" },
+      { actionId: "item_cureStatusPotion", instanceId: "p2", team: "player" },
+      { actionId: "item_cureStatusPotion", instanceId: "p3", team: "enemy" },
+      { actionId: "item_hpPotion", instanceId: "p4", team: "player" },
+    ];
   }
 
   createElement() {
