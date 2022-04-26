@@ -96,19 +96,19 @@ class Overworld {
       { type: "battle" },
       // { who: "hero", type: "walk", direction: "down" },
       // { who: "npc1", type: "stand", direction: "up", time: 100 },
-      // { type: "textMessage", text: "Welcome to the Land of Zenethians..." },
-      // {
-      //   type: "textMessage",
-      //   text: "Here you will face many challenges. The world of Zenethia is an unforgiving place, filled with lots of mystery...",
-      // },
-      // {
-      //   type: "textMessage",
-      //   text: "During your travels you will meet many people and embark on many quests...",
-      // },
-      // {
-      //   type: "textMessage",
-      //   text: "Good luck traveller. May Zenethia treat you well...",
-      // },
+      { type: "textMessage", text: "Welcome to the Land of Zenethians..." },
+      {
+        type: "textMessage",
+        text: "Here you will face many challenges. The world of Zenethia is an unforgiving place, filled with lots of mystery...",
+      },
+      {
+        type: "textMessage",
+        text: "During your travels you will meet many people and embark on many quests...",
+      },
+      {
+        type: "textMessage",
+        text: "Good luck traveller. May Zenethia treat you well...",
+      },
     ]);
   }
 }
