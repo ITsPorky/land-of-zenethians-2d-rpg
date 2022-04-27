@@ -139,7 +139,7 @@
 .character {
   position: absolute;
   transform: scale(2);
-  background: url(/assets//images/characters/shadow.png);
+  background: url(/assets/images/characters/shadow.png);
 }
 
 .character[data-team="player"] {
