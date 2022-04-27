@@ -10,7 +10,7 @@ class Battle {
           xp: 20,
           maxXp: 50,
           level: 1,
-          status: { type: "burning" },
+          status: null,
           isPlayerControlled: true,
         },
         this

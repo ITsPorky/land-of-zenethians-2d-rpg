@@ -2,7 +2,7 @@ window.BattleAnimations = {
   async spin(event, onComplete) {
     const element = event.caster.characterElement;
     const animationClassName =
-      event.caster.team === "player" ? "enemy" : "player";
+      event.caster.team === "player" ? "battle-spin-right" : "battle-spin-left";
 
     element.classList.add(animationClassName);
 
@@ -40,6 +40,7 @@ window.BattleAnimations = {
       div.remove();
     });
 
+    // Maybe move this above the Event Listener
     document.querySelector(".battle").appendChild(div);
 
     // Continue battle cycle after animation
