@@ -22,27 +22,108 @@ A 2d top down RPG made with JavaScript
 * Add Quest markers.
 
 
-### Test Diagram
+## Game Structure
+
+### Main Game Objects: UML Diagram
 ```mermaid
 classDiagram
-      Animal <|-- Duck
-      Animal <|-- Fish
-      Animal <|-- Zebra
-      Animal : +int age
-      Animal : +String gender
-      Animal: +isMammal()
-      Animal: +mate()
-      class Duck{
-          +String beakColor
-          +swim()
-          +quack()
+      Overworld <|-- OverworldMap
+      Overworld <|-- DirectionInput
+      Overworld : +Object canvas
+      Overworld : +Object ctx
+      Overworld : +Object directionInput
+      Overworld : +Object element
+      Overworld : +bool isContentLoaded
+      Overworld: +init()
+      Overworld: +startGameLoop()
+      Overworld: +startMap()
+      class OverworldMap{
+          <|-- GameObject
+          +Object cutsceneSpaces
+          +Object gameObjects
+          +bool isCutscenePlaying
+          +Object overworld
+          +Object walls
+          +addWall()
+          +checkForActionCutscene()
+          +checkForFootstepCustscene()
+          +drawLowerImage()
+          +drawUpperImage()
+          +isSpaceTaken()
+          +mountObjects()
+          +moveWall()
+          +removeWall()
+          +startCutscene()
       }
-      class Fish{
-          -int sizeInFeet
-          -canEat()
+      class OverworldEvent{
+          +Object map
+          +Object event
+          +stand()
+          +walk()
+          +textMessage()
+          +changeMap()
+          +battle()
+          +init()
       }
-      class Zebra{
-          +bool is_wild
+      class DirectionInput{
+          +Array heldDirections
+          +Object map
+      }
+      class GameObject{
+          <|-- Entity
+          +int id
+          +String seed
+          +Object attributes
+          +Array behaviouLoop
+          +int behaviourLoopIndex
+          +String direction
+          +bool isLoaded
+          +bool isMounted
+          +Object sprite
+          +Array talking
+          +int x
+          +int y
           +run()
+      }
+      class Entity{
+          <|-- Sprite
+          +bool isStanding
+          +bool isPlayerControlled
+          +Object directionUpdate
+          +int movingProgressRemaining
+          +startBehaviour()
+          +update()
+          +updatePosition()
+          +updateSprite()
+      }
+      class Sprite{
+          +int animationFrameLimit
+          +int animationFrameProgress
+          +Object animations
+          +String currentAnimation
+          +int currentAnimationFrame
+          +Object gameObject
+          +bool isLoaded
+          +bool isShadowLoaded
+          +bool useShadow
+          +draw()
+          +setAnimation()
+          +updateAnimationProgress()
+      }
+      class KeyBoardMenu{
+          +Array options
+          +Object up = null;
+          +Object down = null;
+          +Object prevFocus = null;
+          +setOptions()
+          +createElement()
+          +end();
+          +init()
+      }
+      class KeyPressListener{
+          +bool keySafe
+          +keyDownFunction()
+          +keyUpFunction()
+          +unbind()
       }
 ```
