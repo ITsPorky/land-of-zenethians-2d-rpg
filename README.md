@@ -146,7 +146,7 @@ classDiagram
           +Object activeCombatants
           +Object items
           +addCombatant()
-          +addEnemy() : async
+          +addEnemy()
           +createElement()
           +init()
       }
@@ -289,7 +289,7 @@ classDiagram
       Battle: +Object activeCombatants
       Battle: +Object items
       Battle: +addCombatant()
-      Battle: +addEnemy() : async
+      Battle: +addEnemy()
       Battle: +createElement()
       Battle: +init()
     class BattleEvent{
