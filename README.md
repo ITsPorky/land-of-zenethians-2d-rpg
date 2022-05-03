@@ -33,6 +33,8 @@ classDiagram
       OverworldMap <|-- GameObject
       GameObject <|-- Entity
       Entity <|-- Sprite
+      DirectionInput <|-- KeyPressListener
+      OverworldEvent <|-- KeyboardMenu
       Overworld : +Object canvas
       Overworld : +Object ctx
       Overworld : +Object directionInput
@@ -115,7 +117,7 @@ classDiagram
           +setAnimation()
           +updateAnimationProgress()
       }
-      class KeyBoardMenu{
+      class KeyboardMenu{
           +Array options
           +Object up;
           +Object down;
