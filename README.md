@@ -31,10 +31,18 @@ classDiagram
       Overworld <|-- DirectionInput
       Overworld <|-- OverworldEvent
       OverworldMap <|-- GameObject
-      GameObject <|-- Entity
+      GameObject --|> Entity
       Entity <|-- Sprite
       DirectionInput <|-- KeyPressListener
       OverworldEvent <|-- KeyboardMenu
+      OverworldEvent <|-- SceneTransition
+      OverworldEvent <|-- TextMessage
+      Battle <|-- BattleEvent
+      Battle <|-- Combatant
+      Battle <|-- TurnCycle
+      Battle <|-- Team
+      BattleEvent <|-- SubmissionMenu
+      TextMessage <|-- RevealingText
       Overworld : +Object canvas
       Overworld : +Object ctx
       Overworld : +Object directionInput
@@ -44,7 +52,6 @@ classDiagram
       Overworld: +startGameLoop()
       Overworld: +startMap()
       class OverworldMap{
-          <|-- GameObject
           +Object cutsceneSpaces
           +Object gameObjects
           +bool isCutscenePlaying
@@ -77,7 +84,6 @@ classDiagram
           +init()
       }
       class GameObject{
-          <|-- Entity
           +int id
           +String seed
           +Object attributes
@@ -93,7 +99,6 @@ classDiagram
           +run()
       }
       class Entity{
-          <|-- Sprite
           +bool isStanding
           +bool isPlayerControlled
           +Object directionUpdate
@@ -132,5 +137,84 @@ classDiagram
           +keyDownFunction()
           +keyUpFunction()
           +unbind()
+      }
+      class Battle{
+          +Object enemy
+          +Callback onComplete
+          +Object combatants
+          +Object activeCombatants
+          +Object items
+          +addCombatant()
+          +addEnemy() : async
+          +createElement()
+          +init()
+      }
+      class BattleEvent{
+          +Object event
+          +Object battle
+          +textMessage() : TextMessage Object
+          +stateChange() : async
+          +submissionMenu() : SubmissionMenu Object
+          +giveXP()
+          +animation()
+          +init()
+      }
+      class Combatant{
+          +Object battle : Battle Object
+          +get hpPercent()
+          +get xpPercent()
+          +get isActive()
+          +get givesXP()
+          +createElement()
+          +update()
+          +getReplacedEvents()
+          +getPostEvents()
+          +decrementStatus()
+          +init()
+      }
+      class SubmissionMenu{
+          +Object caster
+          +Object enemy
+          +Object replacements
+          +Callback onComplete
+          +Object quantityMap
+          +Object items
+          +getPaged()
+          +menuSubmit()
+          +decide()
+          +showMenu()
+          +init()
+      }
+      class TurnCycle{
+        +Object battle
+        +Callback onNewEvent
+        +String currentTeam
+        +turn() : async
+        +getWinningTeam()
+        +init() : async
+      }
+      class Team{
+        +Object team
+        +Object name
+        +Object combatants
+        +createElement()
+        +update()
+        +init()
+      }
+      class RevealingText{
+        +Object element
+        +String text
+        +int speed
+        +int timeout
+        +bool isDone
+        +revealOneCharacter()
+        +warpToDone()
+        +init()
+      }
+      class SceneTransition{
+        +Object element
+        +createElement()
+        +fadeOut()
+        +init()
       }
 ```
