@@ -233,7 +233,7 @@ classDiagram
 ```mermaid
     classDiagram
       GameObject --|> Entity
-      Enitity <|-- Sprite
+      Entity <|-- Sprite
         GameObject: +int id
         GameObject: +String seed
         GameObject: +Object attributes
