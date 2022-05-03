@@ -29,6 +29,10 @@ A 2d top down RPG made with JavaScript
 classDiagram
       Overworld <|-- OverworldMap
       Overworld <|-- DirectionInput
+      Overworld <|-- OverworldEvent
+      OverworldMap <|-- GameObject
+      GameObject <|-- Entity
+      Entity <|-- Sprite
       Overworld : +Object canvas
       Overworld : +Object ctx
       Overworld : +Object directionInput
@@ -68,6 +72,7 @@ classDiagram
       class DirectionInput{
           +Array heldDirections
           +Object map
+          +init()
       }
       class GameObject{
           <|-- Entity
@@ -112,9 +117,9 @@ classDiagram
       }
       class KeyBoardMenu{
           +Array options
-          +Object up = null;
-          +Object down = null;
-          +Object prevFocus = null;
+          +Object up;
+          +Object down;
+          +Object prevFocus;
           +setOptions()
           +createElement()
           +end();
