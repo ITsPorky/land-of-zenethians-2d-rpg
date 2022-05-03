@@ -282,6 +282,7 @@ classDiagram
       Battle <|-- TurnCycle
       Battle <|-- Team
       BattleEvent <|-- SubmissionMenu
+      BattleEvent <|-- TextMessage
       TextMessage <|-- RevealingText
       Battle: +Object enemy
       Battle: +Callback onComplete
@@ -352,12 +353,6 @@ classDiagram
         +bool isDone
         +revealOneCharacter()
         +warpToDone()
-        +init()
-    }
-    class SceneTransition{
-        +Object element
-        +createElement()
-        +fadeOut()
         +init()
     }
     class TextMessage{
