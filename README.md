@@ -37,6 +37,7 @@ classDiagram
       OverworldEvent <|-- KeyboardMenu
       OverworldEvent <|-- SceneTransition
       OverworldEvent <|-- TextMessage
+      OverworldEvent <|-- Battle
       Battle <|-- BattleEvent
       Battle <|-- Combatant
       Battle <|-- TurnCycle
@@ -215,6 +216,14 @@ classDiagram
         +Object element
         +createElement()
         +fadeOut()
+        +init()
+      }
+      class TextMessage{
+        +String text
+        +Callback onComplete
+        +Object element
+        +createElement()
+        +done()
         +init()
       }
 ```
