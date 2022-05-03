@@ -227,3 +227,145 @@ classDiagram
         +init()
       }
 ```
+
+### Game Object/ Character System: UML Diagram
+
+```mermaid
+    classDiagram
+      GameObject --|> Entity
+      Enitity <|-- Sprite
+        GameObject: +int id
+        GameObject: +String seed
+        GameObject: +Object attributes
+        GameObject: +Array behaviouLoop
+        GameObject: +int behaviourLoopIndex
+        GameObject: +String direction
+        GameObject: +bool isLoaded
+        GameObject: +bool isMounted
+        GameObject: +Object sprite
+        GameObject: +Array talking
+        GameObject: +int x
+        GameObject: +int y
+        GameObject: +run()
+      class Entity{
+          +bool isStanding
+          +bool isPlayerControlled
+          +Object directionUpdate
+          +int movingProgressRemaining
+          +startBehaviour()
+          +update()
+          +updatePosition()
+          +updateSprite()
+      }
+      class Sprite{
+          +int animationFrameLimit
+          +int animationFrameProgress
+          +Object animations
+          +String currentAnimation
+          +int currentAnimationFrame
+          +Object gameObject
+          +bool isLoaded
+          +bool isShadowLoaded
+          +bool useShadow
+          +draw()
+          +setAnimation()
+          +updateAnimationProgress()
+      }
+```
+
+### Battle System: UML Diagram
+
+```mermaid
+    classDiagram
+      Battle <|-- BattleEvent
+      Battle <|-- Combatant
+      Battle <|-- TurnCycle
+      Battle <|-- Team
+      BattleEvent <|-- SubmissionMenu
+      TextMessage <|-- RevealingText
+      Battle: +Object enemy
+      Battle: +Callback onComplete
+      Battle: +Object combatants
+      Battle: +Object activeCombatants
+      Battle: +Object items
+      Battle: +addCombatant()
+      Battle: +addEnemy() : async
+      Battle: +createElement()
+      Battle: +init()
+    class BattleEvent{
+        +Object event
+        +Object battle
+        +textMessage() : TextMessage Object
+        +stateChange() : async
+        +submissionMenu() : SubmissionMenu Object
+        +giveXP()
+        +animation()
+        +init()
+    }
+    class Combatant{
+        +Object battle : Battle Object
+        +get hpPercent()
+        +get xpPercent()
+        +get isActive()
+        +get givesXP()
+        +createElement()
+        +update()
+        +getReplacedEvents()
+        +getPostEvents()
+        +decrementStatus()
+        +init()
+    }
+    class SubmissionMenu{
+        +Object caster
+        +Object enemy
+        +Object replacements
+        +Callback onComplete
+        +Object quantityMap
+        +Object items
+        +getPaged()
+        +menuSubmit()
+        +decide()
+        +showMenu()
+        +init()
+    }
+    class TurnCycle{
+        +Object battle
+        +Callback onNewEvent
+        +String currentTeam
+        +turn() : async
+        +getWinningTeam()
+        +init() : async
+    }
+    class Team{
+        +Object team
+        +Object name
+        +Object combatants
+        +createElement()
+        +update()
+        +init()
+    }
+    class RevealingText{
+        +Object element
+        +String text
+        +int speed
+        +int timeout
+        +bool isDone
+        +revealOneCharacter()
+        +warpToDone()
+        +init()
+    }
+    class SceneTransition{
+        +Object element
+        +createElement()
+        +fadeOut()
+        +init()
+    }
+    class TextMessage{
+        +String text
+        +Callback onComplete
+        +Object element
+        +createElement()
+        +done()
+        +init()
+    }
+```
