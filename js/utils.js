@@ -92,7 +92,6 @@ const utils = {
       const api_url = `https://character-generation-api.herokuapp.com/seed/${seed}/metadata`;
       const response = await fetch(api_url);
       const data = await response.json();
-      console.log(data);
       return data;
     } catch (err) {
       console.log(err);
