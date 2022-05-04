@@ -34,11 +34,10 @@ class GameObject {
     this.behaviourLoop = config.behaviourLoop || [];
     this.behaviourLoopIndex = 0;
     this.talking = config.talking || [];
-    // console.log("constructor complete", this);
   }
 
   mount(map) {
-    console.log("Mounting....");
+    // console.log("Mounting....");
     this.isMounted = true;
     map.addWall(this.x, this.y);
 
