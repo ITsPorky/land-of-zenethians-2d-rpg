@@ -77,11 +77,20 @@ class OverworldEvent {
 
   battle(resolve) {
     const battle = new Battle({
+      enemy: this.event.enemy,
       onComplete: () => {
         resolve();
       },
     });
     battle.init(document.querySelector(".game-container"));
+  }
+
+  loadingScreen(resolve) {
+    const loadingScreen = new LoadingScreen(this.event.map);
+    loadingScreen.init(document.querySelector(".game-container"), () => {
+      resolve();
+      loadingScreen.removeLoadingScreen();
+    });
   }
 
   init() {

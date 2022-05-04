@@ -5,7 +5,7 @@ class Overworld {
     this.ctx = this.canvas.getContext("2d");
     this.map = null;
 
-    this.isContentLoaded = false;
+    // this.isContentLoaded = false;
   }
 
   startGameLoop() {
@@ -68,15 +68,6 @@ class Overworld {
     this.map.mountObjects();
   }
 
-  drawLoadingScreen() {
-    const loadingScreen = document.createElement("div");
-    loadingScreen.classList.add("loading-screen");
-    loadingScreen.innerHTML = `
-      <p class='loading-screen-message'>Loading...</p>
-    `;
-    this.element.appendChild(loadingScreen);
-  }
-
   init() {
     // Add loading screen to wait until the characters
     // and all entities have been loaded.
@@ -90,10 +81,17 @@ class Overworld {
     this.directionInput = new DirectionInput();
     this.directionInput.init();
 
+    // Enable this for testing
+    console.log("Overworld Game Object:", this);
+
     this.startGameLoop();
 
     this.map.startCutscene([
-      { type: "battle" },
+      { type: "loadingScreen", map: this.map },
+      {
+        type: "battle",
+        enemy: this.map.gameObjects.npc1,
+      },
       // { who: "hero", type: "walk", direction: "down" },
       // { who: "npc1", type: "stand", direction: "up", time: 100 },
       { type: "textMessage", text: "Welcome to the Land of Zenethians..." },

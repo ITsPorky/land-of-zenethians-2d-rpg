@@ -152,31 +152,31 @@ window.OverworldMaps = {
           { type: "stand", direction: "down", time: 800 },
         ],
       }),
-      np3: new Entity({
+      npc3: new Entity({
         seed: Math.floor(Math.random() * 1000),
         isPlayerControlled: false,
         x: utils.withGrid(11),
         y: utils.withGrid(8),
       }),
-      np4: new Entity({
+      npc4: new Entity({
         seed: Math.floor(Math.random() * 1000),
         isPlayerControlled: false,
         x: utils.withGrid(12),
         y: utils.withGrid(8),
       }),
-      np5: new Entity({
+      npc5: new Entity({
         seed: Math.floor(Math.random() * 1000),
         isPlayerControlled: false,
         x: utils.withGrid(13),
         y: utils.withGrid(8),
       }),
-      np5: new Entity({
+      npc6: new Entity({
         seed: Math.floor(Math.random() * 1000),
         isPlayerControlled: false,
         x: utils.withGrid(14),
         y: utils.withGrid(8),
       }),
-      np6: new Entity({
+      npc7: new Entity({
         seed: Math.floor(Math.random() * 1000),
         isPlayerControlled: false,
         x: utils.withGrid(15),
