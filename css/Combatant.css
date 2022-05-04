@@ -21,11 +21,11 @@
 
 .combatant[data-team="player"] {
   left: 46px;
-  top: 30px;
+  top: 40px;
 }
 
 .combatant[data-team="enemy"] {
-  top: 30px;
+  top: 40px;
   right: 46px;
 }
 
