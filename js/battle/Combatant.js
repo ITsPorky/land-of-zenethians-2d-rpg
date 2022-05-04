@@ -20,6 +20,10 @@ class Combatant {
     return this.battle.activeCombatants[this.team === this.id];
   }
 
+  get givesXP() {
+    return this.level * 20;
+  }
+
   createElement() {
     this.hudElement = document.createElement("div");
     this.hudElement.classList.add("combatant");
@@ -29,10 +33,14 @@ class Combatant {
       <p class="combatant-name">${this.name}</p>
       <p class="combatant-level"></p>
       <div class="combatant-character-crop">
-        <img class="combatant-character" src="${this.sprite_url}" alt="${this.name}" />
+        <img class="combatant-character" src="${this.sprite_url}" alt="${
+      this.name
+    }" />
       </div>
       <p class="combatant-type">${this.class}</p>
-      <p class="combatant-life-value">HP:${this.hp}/${this.maxHp}</p>
+      <p class="combatant-life-value">HP:${this.hp >= 0 ? this.hp : 0}/${
+      this.maxHp
+    }</p>
       <svg viewBox="0 0 26 3" class="combatant-life-container">
         <rect x=0 y=0 width="0%" height=1 fill="#82ff71" />
         <rect x=0 y=0 width="0%" height=2 fill="#3ef126" />

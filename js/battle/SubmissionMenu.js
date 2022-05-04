@@ -1,7 +1,8 @@
 class SubmissionMenu {
-  constructor({ caster, enemy, onComplete, items }) {
+  constructor({ caster, enemy, onComplete, items, replacements }) {
     this.caster = caster;
     this.enemy = enemy;
+    this.replacements = replacements;
     this.onComplete = onComplete;
 
     let quantityMap = {};
@@ -70,14 +71,6 @@ class SubmissionMenu {
             },
           };
         }),
-        // {
-        //   label: "Attack",
-        //   description: "Attack is made.",
-        //   handler: () => {
-        //     // Swap to another party member...
-        //     console.log("ATTACK OTHER PLAYER");
-        //   },
-        // },
         backOption,
       ],
       items: [

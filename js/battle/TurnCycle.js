@@ -40,6 +40,42 @@ class TurnCycle {
       await this.onNewEvent(event);
     }
 
+    // Did the target die?
+    const targetDead = submission.target.hp <= 0;
+    if (targetDead) {
+      await this.onNewEvent({
+        type: "textMessage",
+        text: `${submission.target.name} is dead!`,
+      });
+
+      if (submission.target.team === "enemy") {
+        const playerId = this.battle.activeCombatants.player;
+        const xp = submission.target.givesXP;
+
+        await this.onNewEvent({
+          type: "textMessage",
+          text: `${submission.target.name} gained ${xp} XP!`,
+        });
+
+        await this.onNewEvent({
+          type: "giveXP",
+          xp,
+          combatant: this.battle.combatants[playerId],
+        });
+      }
+    }
+
+    // Do we have a winning team?
+    const winner = this.getWinningTeam();
+    if (winner) {
+      await this.onNewEvent({
+        type: "textMessage",
+        text: "Winner!",
+      });
+
+      return;
+    }
+
     // Check for post events
     // (DO things after original turn submission)
     const postEvents = caster.getPostEvents();
@@ -65,6 +101,21 @@ class TurnCycle {
 
     // Recursivly call to play the next turn
     this.turn();
+  }
+
+  getWinningTeam() {
+    let aliveTeams = {};
+    Object.values(this.battle.combatants).forEach((c) => {
+      if (c.hp > 0) {
+        aliveTeams[c.team] = true;
+      }
+    });
+    if (!aliveTeams["player"]) {
+      return "enemy";
+    }
+    if (!aliveTeams["enemy"]) {
+      return "player";
+    }
   }
 
   async init() {
