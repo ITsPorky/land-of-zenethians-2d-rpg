@@ -88,6 +88,7 @@ class OverworldEvent {
   loadingScreen(resolve) {
     const loadingScreen = new LoadingScreen(this.event.map);
     loadingScreen.init(document.querySelector(".game-container"), () => {
+      console.log("entered callback");
       resolve();
       loadingScreen.removeLoadingScreen();
     });
