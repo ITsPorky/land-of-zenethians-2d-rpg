@@ -278,7 +278,6 @@ classDiagram
 
 ```mermaid
     classDiagram
-      Battle <|-- BattleEvent
       Battle <|-- Combatant
       Battle <|-- TurnCycle
       Battle <|-- Team
