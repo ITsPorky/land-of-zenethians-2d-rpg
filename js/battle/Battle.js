@@ -43,7 +43,6 @@ class Battle {
       this.addPlayerCombatant(id, "player", window.playerState.player[id]);
     });
 
-    console.log(this.enemy.attributes);
     // Dynamically add the enemy team
     this.addCombatant(this.enemy.id, "enemy", this.enemy);
 
@@ -103,8 +102,8 @@ class Battle {
   }
 
   init(container) {
-    console.log("Combatants", this.combatants);
-    console.log("Active Combatants", this.activeCombatants);
+    // console.log("Combatants", this.combatants);
+    // console.log("Active Combatants", this.activeCombatants);
 
     this.createElement();
     container.appendChild(this.element);
