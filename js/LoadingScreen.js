@@ -16,19 +16,41 @@ class LoadingScreen {
     this.element.remove();
   }
 
-  isContentLoaded(flag) {
-    if (flag === true) {
-      return;
+  async waitForCondition(condition, callback) {
+    while (condition === false) {
+      if (condition === true) {
+        console.log("met");
+        callback();
+      }
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
-    window.setTimeout(this.isContentLoaded(flag), 5000);
   }
 
-  init(container, callback) {
+  isContentLoaded(condition, callback) {
+    return new Promise((resolve) => {
+      function checkFlag() {
+        console.log(condition);
+        if (condition.isLoaded === true) {
+          console.log("met");
+          callback();
+          resolve();
+        } else {
+          console.log("start again");
+          window.setTimeout(checkFlag, 100);
+        }
+      }
+      checkFlag();
+    });
+  }
+
+  async init(container, callback) {
     this.createElement();
     container.appendChild(this.element);
 
     // Last GameObject
     const last = Object.values(this.overworld.gameObjects).pop();
+
+    await this.isContentLoaded(last, callback);
 
     // Check each object is loaded
     // Object.values(this.overworld.gameObjects).forEach((object) => {
@@ -37,16 +59,24 @@ class LoadingScreen {
     // });
 
     // Wait for values before moving on
-    const promise = new Promise((resolve, reject) => {
-      window.setTimeout(() => {
-        if (last.isLoaded === true) {
-          resolve();
-        }
-      }, 1000);
-    });
+    // const promise = new Promise(async (resolve, reject) => {
+    //   console.log("Entered Promise");
+    //   window.setTimeout(() => {
+    //     if (last.isLoaded === true) {
+    //       resolve();
+    //     } else {
+    //       reject();
+    //     }
+    //   }, 100);
+    // });
 
-    promise.then(() => {
-      callback();
-    });
+    // promise.then(() => {
+    //   console.log("resolved");
+    //   callback();
+    // });
+
+    // promise.catch(() => {
+    //   console.log("Loading Screen Error!");
+    // });
   }
 }
