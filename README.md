@@ -38,11 +38,12 @@ classDiagram
       OverworldEvent <|-- SceneTransition
       OverworldEvent <|-- TextMessage
       OverworldEvent <|-- Battle
-      Battle <|-- BattleEvent
       Battle <|-- Combatant
       Battle <|-- TurnCycle
       Battle <|-- Team
+      TurnCycle <|-- BattleEvent
       BattleEvent <|-- SubmissionMenu
+      SubmissionMenu <|-- TextMessage
       TextMessage <|-- RevealingText
       Overworld : +Object canvas
       Overworld : +Object ctx
@@ -281,6 +282,7 @@ classDiagram
       Battle <|-- Combatant
       Battle <|-- TurnCycle
       Battle <|-- Team
+      TurnCycle <|-- BattleEvent
       BattleEvent <|-- SubmissionMenu
       BattleEvent <|-- TextMessage
       TextMessage <|-- RevealingText
