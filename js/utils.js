@@ -58,33 +58,35 @@ const utils = {
   getRollType(value) {
     switch (value) {
       case "d3":
-        return rollDice(3);
+        return this.rollDice(3);
       case "d4":
-        return rollDice(4);
+        return this.rollDice(4);
       case "d6":
-        return rollDice(6);
+        return this.rollDice(6);
       case "d8":
-        return rollDice(8);
+        return this.rollDice(8);
       case "d10":
-        return rollDice(10);
+        return this.rollDice(10);
       case "d12":
-        return rollDice(12);
+        return this.rollDice(12);
       case "2d3":
-        return rollDice(3, 2);
+        return this.rollDice(3, 2);
       case "3d3":
-        return rollDice(3, 3);
+        return this.rollDice(3, 3);
       case "4d3":
-        return rollDice(3, 4);
+        return this.rollDice(3, 4);
       case "2d4":
-        return rollDice(4, 2);
+        return this.rollDice(4, 2);
       case "3d4":
-        return rollDice(4, 3);
+        return this.rollDice(4, 3);
       case "4d4":
-        return rollDice(4, 4);
+        return this.rollDice(4, 4);
       case "2d6":
-        return rollDice(6, 2);
+        return this.rollDice(6, 2);
     }
   },
+
+  // Create Actions
 
   // Other methods for fetching API data
   async fetchData(seed) {
