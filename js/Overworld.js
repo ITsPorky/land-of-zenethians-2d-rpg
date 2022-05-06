@@ -87,7 +87,7 @@ class Overworld {
     this.startGameLoop();
 
     this.map.startCutscene([
-      { type: "loadingScreen", map: this.map },
+      { type: "loadingScreen", map: this.map.gameObjects },
       {
         type: "battle",
         enemy: this.map.gameObjects.npc1,
