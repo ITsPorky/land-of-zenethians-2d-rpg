@@ -1,37 +1,11 @@
 class Battle {
-  constructor({ enemy, onComplete }) {
-    this.enemy = enemy;
+  constructor({ map, enemy, onComplete }) {
+    console.log(map);
+    this.map = map;
+    this.enemy = this.map.gameObjects[enemy];
     this.onComplete = onComplete;
 
-    this.combatants = {
-      // player1: new Combatant(
-      //   {
-      //     ...Players.player1,
-      //     actions: [Players.player1.weapon.type],
-      //     team: "player",
-      //     maxHp: Players.player1.hp,
-      //     xp: 0,
-      //     maxXp: 50,
-      //     level: 1,
-      //     status: null,
-      //     isPlayerControlled: true,
-      //   },
-      //   this
-      // ),
-      // enemy1: new Combatant(
-      //   {
-      //     ...Players.player1,
-      //     actions: [Players.player1.weapon.type],
-      //     team: "enemy",
-      //     maxHp: Players.player1.hp,
-      //     xp: 20,
-      //     maxXp: 50,
-      //     level: 1,
-      //     status: null,
-      //   },
-      //   this
-      // ),
-    };
+    this.combatants = {};
 
     this.activeCombatants = {
       player: null,
@@ -40,18 +14,23 @@ class Battle {
 
     // Dynamically add the player team
     window.playerState.lineup.forEach((id) => {
-      this.addPlayerCombatant(id, "player", window.playerState.player[id]);
+      this.addPlayerCombatant(id, "player", window.playerState.players[id]);
     });
 
     // Dynamically add the enemy team
     this.addCombatant(this.enemy.id, "enemy", this.enemy);
 
-    this.items = [
-      // { actionId: "item_cureStatusPotion", instanceId: "p1", team: "player" },
-      // { actionId: "item_cureStatusPotion", instanceId: "p2", team: "player" },
-      // { actionId: "item_cureStatusPotion", instanceId: "p3", team: "enemy" },
-      // { actionId: "item_hpPotion", instanceId: "p4", team: "player" },
-    ];
+    // Start empty
+    this.items = [];
+
+    // Add in player items
+    window.playerState.inventory.forEach((item) => {
+      this.items.push({
+        ...item,
+        team: "player",
+      });
+    });
+    this.usedInstanceIds = {};
   }
 
   addPlayerCombatant(id, team, config) {
@@ -134,6 +113,32 @@ class Battle {
           const battleEvent = new BattleEvent(event, this);
           battleEvent.init(resolve);
         });
+      },
+      onWinner: (winner) => {
+        if (winner === "player") {
+          const playerState = window.playerState;
+          Object.keys(playerState.players).forEach((id) => {
+            const player = playerState.players[id];
+            const combatant = this.combatants[id];
+            if (combatant) {
+              player.hp = combatant.hp;
+              player.xp = combatant.xp;
+              player.maxXp = combatant.maxXp;
+              player.level = combatant.level;
+            }
+          });
+
+          // Get rid of player used items
+          playerState.inventory = playerState.inventory.filter((item) => {
+            return !this.usedInstanceIds[item.instanceId];
+          });
+
+          // Send signal to update HUD
+          utils.emitEvent("PlayerStateUpdated");
+        }
+
+        this.element.remove();
+        this.onComplete();
       },
     });
 

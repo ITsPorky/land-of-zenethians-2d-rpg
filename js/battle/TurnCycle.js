@@ -1,7 +1,8 @@
 class TurnCycle {
-  constructor({ battle, onNewEvent }) {
+  constructor({ battle, onNewEvent, onWinner }) {
     this.battle = battle;
     this.onNewEvent = onNewEvent;
+    this.onWinner = onWinner;
     this.currentTeam = "player"; // or enemy
   }
 
@@ -22,6 +23,10 @@ class TurnCycle {
     });
 
     if (submission.instanceId) {
+      // Add to list to persist to player list later
+      this.battle.usedInstanceIds[submission.instanceId] = true;
+
+      // Remove item from battle state
       this.battle.items = this.battle.items.filter(
         (i) => i.instanceId !== submission.instanceId
       );
@@ -54,7 +59,7 @@ class TurnCycle {
 
         await this.onNewEvent({
           type: "textMessage",
-          text: `${submission.target.name} gained ${xp} XP!`,
+          text: `${this.battle.combatants[playerId].name} gained ${xp} XP!`,
         });
 
         await this.onNewEvent({
@@ -72,7 +77,7 @@ class TurnCycle {
         type: "textMessage",
         text: "Winner!",
       });
-
+      this.onWinner(winner);
       return;
     }
 
@@ -121,7 +126,7 @@ class TurnCycle {
   async init() {
     await this.onNewEvent({
       type: "textMessage",
-      text: "The battle is starting",
+      text: `Yo have enetered combat with ${this.battle.enemy.attributes.name}`,
     });
 
     // Start the first turn

@@ -27,7 +27,7 @@ class BattleEvent {
     if (damage) {
       // modify target to have less hp
       target.update({
-        hp: target.hp - damage,
+        hp: target.hp - utils.getRollType(damage),
       });
 
       // Update displayed HP text
