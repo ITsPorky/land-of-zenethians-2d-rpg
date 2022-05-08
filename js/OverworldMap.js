@@ -12,6 +12,7 @@ class OverworldMap {
     this.upperSrc = config.upperSrc;
 
     this.isCutscenePlaying = false;
+    this.isPaused = false;
   }
 
   drawLowerImage(ctx, cameraObject) {
@@ -128,8 +129,12 @@ window.OverworldMaps = {
             events: [
               {
                 type: "textMessage",
-                text: "Sup you lil pussy bitch",
+                text: "Sup you lil pussy bitch, I challenge you to a duel",
                 faceHero: "npc1",
+              },
+              {
+                type: "battle",
+                enemy: "npc1",
               },
               { type: "textMessage", text: "Leave me alone..." },
               { who: "hero", type: "walk", direction: "right" },

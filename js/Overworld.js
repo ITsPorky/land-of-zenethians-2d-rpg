@@ -39,9 +39,12 @@ class Overworld {
       // Draw Upper Layer
       this.map.drawUpperImage(this.ctx, cameraObject);
 
-      requestAnimationFrame(() => {
-        step();
-      });
+      // Check for animations playing for pause menu
+      if (!this.map.isPaused) {
+        requestAnimationFrame(() => {
+          step();
+        });
+      }
     };
     step();
   }
@@ -50,6 +53,11 @@ class Overworld {
     new KeyPressListener("Enter", () => {
       // Is there an entity to interact with
       this.map.checkForActionCutscene();
+    });
+    new KeyPressListener("Escape", () => {
+      if (!this.map.isCutscenePlaying) {
+        this.map.startCutscene([{ type: "pause" }]);
+      }
     });
   }
 
@@ -69,9 +77,8 @@ class Overworld {
   }
 
   init() {
-    // Add loading screen to wait until the characters
-    // and all entities have been loaded.
-    // this.drawLoadingScreen();
+    this.hud = new Hud();
+    this.hud.init(document.querySelector(".game-container"));
 
     this.startMap(window.OverworldMaps.DemoRoom);
 
@@ -87,26 +94,21 @@ class Overworld {
     this.startGameLoop();
 
     this.map.startCutscene([
+      // Loading screen event to wait until all API data is fetched
       { type: "loadingScreen", map: this.map.gameObjects },
-      {
-        type: "battle",
-        enemy: this.map.gameObjects.npc1,
-      },
-      // { who: "hero", type: "walk", direction: "down" },
-      // { who: "npc1", type: "stand", direction: "up", time: 100 },
-      { type: "textMessage", text: "Welcome to the Land of Zenethians..." },
-      {
-        type: "textMessage",
-        text: "Here you will face many challenges. The world of Zenethia is an unforgiving place, filled with lots of mystery...",
-      },
-      {
-        type: "textMessage",
-        text: "During your travels you will meet many people and embark on many quests...",
-      },
-      {
-        type: "textMessage",
-        text: "Good luck traveller. May Zenethia treat you well...",
-      },
+      // { type: "textMessage", text: "Welcome to the Land of Zenethians..." },
+      // {
+      //   type: "textMessage",
+      //   text: "Here you will face many challenges. The world of Zenethia is an unforgiving place, filled with lots of mystery...",
+      // },
+      // {
+      //   type: "textMessage",
+      //   text: "During your travels you will meet many people and embark on many quests...",
+      // },
+      // {
+      //   type: "textMessage",
+      //   text: "Good luck traveller. May Zenethia treat you well...",
+      // },
     ]);
   }
 }
