@@ -8,6 +8,8 @@
 .hud .combatant {
   position: relative;
   margin-bottom: 10px;
+  transform-origin: top left;
+  transform: scale(1);
 }
 
 /* .hud .combatant-type {
