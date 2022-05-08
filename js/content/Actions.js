@@ -5,7 +5,7 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}" },
       { type: "animation", animation: "spin" },
-      { type: "stateChange", damage: 10 },
+      { type: "stateChange", damage: "d6" },
     ],
   },
   Staff: {
@@ -14,7 +14,7 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}" },
       { type: "animation", animation: "spin" },
-      { type: "stateChange", damage: 10 },
+      { type: "stateChange", damage: "d6" },
     ],
   },
   Sword: {
@@ -23,7 +23,7 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}" },
       { type: "animation", animation: "spin" },
-      { type: "stateChange", damage: 10 },
+      { type: "stateChange", damage: "d6" },
     ],
   },
   Dagger: {
@@ -32,7 +32,7 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} uses {ACTION}" },
       { type: "animation", animation: "spin" },
-      { type: "stateChange", damage: 10 },
+      { type: "stateChange", damage: "d6" },
     ],
   },
   // Status actions

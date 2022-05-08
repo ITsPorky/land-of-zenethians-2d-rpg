@@ -6,6 +6,7 @@ class GameObject {
     this.x = config.x || 0;
     this.y = config.y || 0;
     this.direction = config.direction || "down";
+
     // Get json data from seed
     this.seed = config.seed || "0";
     // Create empty data object

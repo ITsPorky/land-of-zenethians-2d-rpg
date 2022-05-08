@@ -1,0 +1,15 @@
+.hud {
+  position: absolute;
+  left: 2px;
+  top: 10px;
+  image-rendering: pixelated;
+}
+
+.hud .combatant {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+/* .hud .combatant-type {
+  display: none;
+} */
