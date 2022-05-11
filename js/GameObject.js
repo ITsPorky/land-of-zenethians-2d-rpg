@@ -38,7 +38,7 @@ class GameObject {
   }
 
   mount(map) {
-    // console.log("Mounting....");
+    console.log("Mounting....");
     this.isMounted = true;
     map.addWall(this.x, this.y);
 
