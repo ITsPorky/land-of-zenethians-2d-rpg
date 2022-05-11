@@ -53,7 +53,10 @@ class OverworldMap {
         event: events[i],
         map: this,
       });
-      await eventHandler.init();
+      const result = await eventHandler.init();
+      if (result === "LOST_BATTLE") {
+        break;
+      }
     }
 
     this.isCutscenePlaying = false;
@@ -71,7 +74,13 @@ class OverworldMap {
       return `${object.x}, ${object.y}` === `${nextCoords.x}, ${nextCoords.y}`;
     });
     if (!this.isCutscenePlaying && match && match.talking.length) {
-      this.startCutscene(match.talking[0].events);
+      const relevantScenario = match.talking.find((scenario) => {
+        return (scenario.required || []).every((sf) => {
+          return playerState.storyFlags[sf];
+        });
+      });
+
+      relevantScenario && this.startCutscene(relevantScenario.events);
     }
   }
 
@@ -126,6 +135,16 @@ window.OverworldMaps = {
         ],
         talking: [
           {
+            required: ["DEFEATED_NPC1"],
+            events: [
+              {
+                type: "textMessage",
+                text: "That was a great battle! You proved stronger than I thought.",
+                faceHero: "hero",
+              },
+            ],
+          },
+          {
             events: [
               {
                 type: "textMessage",
@@ -136,6 +155,7 @@ window.OverworldMaps = {
                 type: "battle",
                 enemy: "npc1",
               },
+              { type: "addStoryFlag", flag: "DEFEATED_NPC1" },
               { type: "textMessage", text: "Leave me alone..." },
               { who: "hero", type: "walk", direction: "right" },
             ],
