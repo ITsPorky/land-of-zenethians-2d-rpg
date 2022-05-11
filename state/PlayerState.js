@@ -18,6 +18,10 @@ class PlayerState {
       { actionId: "item_cureStatusPotion", instanceId: "p2" },
       { actionId: "item_hpPotion", instanceId: "p4" },
     ];
+
+    this.storyFlags = {
+      TALKED_TO_NPC1: true,
+    };
   }
 
   swapLineup(oldId, incomingId) {
