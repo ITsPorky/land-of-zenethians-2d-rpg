@@ -8,7 +8,6 @@ class PauseMenu {
       // Case 1: SHow the first page of options
       const lineupPlayers = playerState.lineup.map((id) => {
         const player = playerState.players[id];
-        console.log(player);
         // const base = players[playerId];
         return {
           label: player.name,
