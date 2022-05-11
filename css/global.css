@@ -16,6 +16,7 @@
 * {
   font-family: "PressStart2P";
   box-sizing: border-box;
+  line-height: 1.5;
 }
 
 body {
@@ -44,7 +45,7 @@ body {
   left: 0; 
   right: 0;
   bottom: 0;
-  background: #1785ff;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,5 +57,5 @@ body {
   color: #000;
   -webkit-text-fill-color: #000; /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #fff;
+  -webkit-text-stroke-color: #333;
 }
