@@ -39,6 +39,11 @@ class LoadingScreen {
     // Last GameObject
     const last = Object.values(this.data).pop();
 
+    // Loop through all game objects
+    // Object.values(this.data).forEach(async (object) => {
+    //   await this.isContentLoaded(object, callback);
+    // });
+
     await this.isContentLoaded(last, callback);
   }
 }
