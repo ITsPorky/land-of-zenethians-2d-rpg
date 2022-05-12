@@ -7,34 +7,15 @@ class GameObject {
     this.y = config.y || 0;
     this.direction = config.direction || "down";
 
-    // Get json data from seed
-    this.seed = config.seed || "0";
-    // Create empty data object
-    this.attributes = {};
-    // When data is fetched callback and add data to this.data
-    this.fetchData(this.seed, (jsonData) => {
-      this.attributes = jsonData;
-      this.isLoaded = true;
-      // Create new sprite from API data
-      this.sprite = new Sprite({
-        gameObject: this,
-        src:
-          utils.getSprite(this.attributes) ||
-          "/assets/images/characters/player.png",
-      });
-    });
+    this.behaviourLoop = config.behaviourLoop || [];
+    this.behaviourLoopIndex = 0;
+    this.talking = config.talking || [];
 
     // Create default sprite
     this.sprite = new Sprite({
       gameObject: this,
-      src:
-        utils.getSprite(this.attributes) ||
-        "/assets/images/characters/player.png",
+      src: "/assets/images/characters/player.png",
     });
-
-    this.behaviourLoop = config.behaviourLoop || [];
-    this.behaviourLoopIndex = 0;
-    this.talking = config.talking || [];
   }
 
   mount(map) {

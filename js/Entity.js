@@ -12,6 +12,24 @@ class Entity extends GameObject {
       left: ["x", -1],
       right: ["x", 1],
     };
+
+    // Get json data from seed
+    this.seed = config.seed || "0";
+    // Create empty data object
+    this.attributes = {};
+
+    // When data is fetched callback and add data to this.data
+    this.fetchData(this.seed, (jsonData) => {
+      this.attributes = jsonData;
+      this.isLoaded = true;
+      // Create new sprite from API data
+      this.sprite = new Sprite({
+        gameObject: this,
+        src:
+          utils.getSprite(this.attributes) ||
+          "/assets/images/characters/player.png",
+      });
+    });
   }
 
   update(state) {
