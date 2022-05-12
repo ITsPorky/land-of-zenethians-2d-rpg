@@ -207,6 +207,11 @@ window.OverworldMaps = {
         x: utils.withGrid(15),
         y: utils.withGrid(8),
       }),
+      craftingStation: new CraftingStation({
+        x: utils.withGrid(5),
+        y: utils.withGrid(1),
+        isObject: true,
+      }),
     },
     walls: {
       [utils.asGridCoord(0, 1)]: true,
