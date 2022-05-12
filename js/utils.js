@@ -88,13 +88,13 @@ const utils = {
 
   // Create Actions
 
-  // Other methods for fetching API data
-  async fetchData(seed) {
+  // Method for fetching API data
+  async fetchData(seed, callback) {
     try {
       const api_url = `https://character-generation-api.herokuapp.com/seed/${seed}/metadata`;
       const response = await fetch(api_url);
       const data = await response.json();
-      return data;
+      callback(data);
     } catch (err) {
       console.log(err);
     }
