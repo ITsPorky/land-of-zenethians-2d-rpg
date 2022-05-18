@@ -201,16 +201,17 @@ window.OverworldMaps = {
         x: utils.withGrid(14),
         y: utils.withGrid(8),
       }),
+      craftingStation: new CraftingStation({
+        x: utils.withGrid(5),
+        y: utils.withGrid(1),
+        isObject: true,
+        is32x32: false,
+      }),
       npc7: new Entity({
         seed: Math.floor(Math.random() * 1000),
         isPlayerControlled: false,
         x: utils.withGrid(15),
         y: utils.withGrid(8),
-      }),
-      craftingStation: new CraftingStation({
-        x: utils.withGrid(5),
-        y: utils.withGrid(1),
-        isObject: true,
       }),
     },
     walls: {
