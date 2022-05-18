@@ -3,6 +3,7 @@ class Entity extends GameObject {
     super(config);
     this.movingProgressRemaining = 0;
     this.isStanding = false;
+    this.isLoaded = false;
 
     this.isPlayerControlled = config.isPlayerControlled || false;
 

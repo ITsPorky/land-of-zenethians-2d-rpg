@@ -1,7 +1,6 @@
 class GameObject {
   constructor(config) {
     this.id = null;
-    this.isLoaded = false;
     this.isMounted = false;
     this.x = config.x || 0;
     this.y = config.y || 0;
@@ -10,6 +9,8 @@ class GameObject {
     this.behaviourLoop = config.behaviourLoop || [];
     this.behaviourLoopIndex = 0;
     this.talking = config.talking || [];
+
+    this.is32x32 = config.is32x32 || true;
 
     // Create default sprite
     this.sprite = new Sprite({

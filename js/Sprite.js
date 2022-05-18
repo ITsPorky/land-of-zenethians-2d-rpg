@@ -63,15 +63,52 @@ class Sprite {
   }
 
   draw(ctx, cameraObject) {
-    const x = this.gameObject.x - 8 + utils.withGrid(10.5) - cameraObject.x;
-    const y = this.gameObject.y - 22 + utils.withGrid(6) - cameraObject.y; // 18
+    // Get sprite sizing and correctly position.
+    if (this.gameObject.is32x32) {
+      // place 32x32 sprites on 16x16 squares
+      const size = 32;
+      const x = this.gameObject.x - 8 + utils.withGrid(10.5) - cameraObject.x;
+      const y = this.gameObject.y - 22 + utils.withGrid(6) - cameraObject.y; // 18
 
-    this.isShadowLoaded && ctx.drawImage(this.shadow, x, y + 2);
+      this.isShadowLoaded && ctx.drawImage(this.shadow, x, y + 2);
 
-    const [frameX, frameY] = this.frame;
+      const [frameX, frameY] = this.frame;
 
-    this.isLoaded &&
-      ctx.drawImage(this.image, frameX * 32, frameY * 32, 32, 32, x, y, 32, 32);
+      this.isLoaded &&
+        ctx.drawImage(
+          this.image,
+          frameX * size,
+          frameY * size,
+          size,
+          size,
+          x,
+          y,
+          size,
+          size
+        ); // try changing 32 to 16 and vice/versa
+    } else {
+      // place 16x16 sprites on 16x16 squares
+      const size = 16;
+      const x = this.gameObject.x - 8 + utils.withGrid(10.5) - cameraObject.x;
+      const y = this.gameObject.y - 22 + utils.withGrid(6) - cameraObject.y; // 18
+
+      this.isShadowLoaded && ctx.drawImage(this.shadow, x, y + 2);
+
+      const [frameX, frameY] = this.frame;
+
+      this.isLoaded &&
+        ctx.drawImage(
+          this.image,
+          frameX * size,
+          frameY * size,
+          size,
+          size,
+          x,
+          y,
+          size,
+          size
+        ); // try changing 32 to 16 and vice/versa
+    }
 
     this.updateAnimationProgress();
   }
